@@ -58,14 +58,37 @@ print('Vitejte v nakupnim centru',
       sep='\n')
 
 # TODO while cyklus
-zbozi = input('Zbozi: ')
-while zbozi != 'q':
-    # TODO pokud zbozi neni v nabidce
 
-    # TODO pokud vybrane zbozi neni v nakupnim voziku
+while (zbozi := input('Zbozi: ').lower()) != 'q':
+    # TODO poku d zbozi neni v nabidce
+    if zbozi not in potraviny:
+        print(f'{zbozi} neni v nabidce')
+
+    # TODO pokud vybrane zbozi neni v nakupnim voziku a je v nabidce
+    elif zbozi not in kosik and potraviny[zbozi][1] > 0:
+        kosik[zbozi] = 1
+        potraviny[zbozi][1] -= 1
+        print(f"{zbozi.title()} bylo pridano do kosiku.")
+        print(nabidka)
+        print(kosik)
+        print(potraviny[zbozi])
 
     # TODO pokud zbozi uz je v kosiku
+    elif zbozi in kosik and potraviny[zbozi][1] > 0:
+        kosik[zbozi] += 1
+        potraviny[zbozi][1] -= 1
+        print(f"{zbozi.title()} bylo pridano do kosiku.")
+        print(nabidka)
+        print(kosik)
+        print(potraviny[zbozi])
 
     # TODO pokud zbozi neni na sklade
+    elif potraviny[zbozi][1] == 0:
+        print(f'{zbozi.title()} jiz neni skladem.')
+        print(nabidka)
+        print(kosik)
+        print(potraviny[zbozi])
 
 # TODO vypsat obsah kosiku pomoci 'else'
+else:
+    print('Konec programu')
