@@ -1,9 +1,12 @@
-# TODO imports
+# imports
+from graphic import obesenec
+from words import word_to_guess
+from random import choice
 
-# TODO variables
+# variables
 life = 7
 game_on = True
-word = 'python'
+word = choice(word_to_guess)
 result = ['_'] * len(word)
 
 while game_on and life > 0:
